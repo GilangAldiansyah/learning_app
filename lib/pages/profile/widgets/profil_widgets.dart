@@ -52,8 +52,8 @@ Widget profileIconAndEditButton() {
 
 var imagesInfo = <String, String>{
   "Settings": "settings.png",
-  "Payment details": "credit-card.png",
-  "Love": "award.png"
+  // "Payment details": "credit-card.png",
+  // "Love": "award.png"
 };
 
 Widget buildListView(BuildContext context) {
