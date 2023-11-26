@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/pages/common_widgets.dart';
 import 'package:learning_app/pages/sign_in/bloc/sign_in_blocs.dart';
 import 'package:learning_app/pages/sign_in/bloc/sign_in_events.dart';
 import 'package:learning_app/pages/sign_in/bloc/sign_in_states.dart';
+import 'package:learning_app/pages/sign_in/sign_in_controller.dart';
 import 'package:learning_app/pages/sign_in/widgets/sign_in_widget.dart';
 
 class SignIn extends StatefulWidget {
@@ -23,7 +25,7 @@ class _SignInState extends State<SignIn> {
           child: SafeArea(
             child: Scaffold(
                 backgroundColor: Colors.white,
-                appBar: buildAppBar(),
+                appBar: buildAppBar("Log In"),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -61,8 +63,16 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       forgotPassword(),
-                      buildLogInAndRegButton("Log in", "login"),
-                      buildLogInAndRegButton("Register", "register"),
+                      SizedBox(
+                        height: 70.h,
+                      ),
+                      buildLogInAndRegButton("Log in", "login", () {
+                        SignInController(context: context)
+                            .handleSignIn("email");
+                      }),
+                      buildLogInAndRegButton("Sign Up", "register", () {
+                        Navigator.of(context).pushNamed("/register");
+                      }),
                     ],
                   ),
                 )),
