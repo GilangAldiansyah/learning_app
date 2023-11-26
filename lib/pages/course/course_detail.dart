@@ -2,6 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/common/widgets/base_text_widget.dart';
 import 'package:learning_app/pages/course/widgets/course_detail_widgets.dart';
 
 class CourseDetail extends StatefulWidget {
@@ -22,7 +25,42 @@ class _CourseDetailState extends State<CourseDetail> {
   // }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: buildAppBar(), body: const Center(child: Text("Course")));
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: buildAppBar(),
+          body: SingleChildScrollView(
+            child: Column(children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 25.w),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      thumbNail(),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      menuView(),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      reusableText("Course Description"),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      reusableText(
+                          "Laravel adalah framework permrograman mobile",
+                          color: AppColors.primaryThreeElementText,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 11.sp)
+                    ]),
+              )
+            ]),
+          ),
+        ),
+      ),
+    );
   }
 }

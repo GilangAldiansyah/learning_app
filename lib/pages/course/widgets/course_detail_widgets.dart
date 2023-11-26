@@ -16,7 +16,7 @@ Widget thumbNail() {
     decoration: const BoxDecoration(
         image: DecorationImage(
             fit: BoxFit.fitWidth,
-            image: AssetImage("assets/icons/image_1/png"))),
+            image: AssetImage("assets/icons/image(3).png"))),
   );
 }
 
@@ -28,13 +28,35 @@ Widget menuView() {
         onTap: () {},
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-          decoration: BoxDecoration(color: AppColors.primaryElement),
+          decoration: BoxDecoration(
+              color: AppColors.primaryElement,
+              borderRadius: BorderRadius.circular(7.w),
+              border: Border.all(color: AppColors.primaryElement)),
           child: reusableText("Author Page",
               color: AppColors.primaryElementText,
               fontWeight: FontWeight.normal,
               fontSize: 10.sp),
         ),
-      )
+      ),
+      _iconAndNum("assets/icons/people.png", 0),
+      _iconAndNum("assets/icons/star.png", 0),
+    ]),
+  );
+}
+
+Widget _iconAndNum(String iconPath, int num) {
+  return Container(
+    margin: EdgeInsets.only(left: 30.w),
+    child: Row(children: [
+      Image(
+        image: AssetImage(iconPath),
+        width: 20.w,
+        height: 20.h,
+      ),
+      reusableText(num.toString(),
+          color: AppColors.primaryThreeElementText,
+          fontSize: 11.sp,
+          fontWeight: FontWeight.normal)
     ]),
   );
 }
