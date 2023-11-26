@@ -40,13 +40,13 @@ Widget profileIconAndEditButton() {
     height: 80.h,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.w),
-        image: const DecorationImage(
-            image: AssetImage("assets/icons/headpic.png"))),
-    child: Image(
-      width: 25.w,
-      height: 25.h,
-      image: const AssetImage("assets/icons/edit_3.png"),
-    ),
+        image:
+            const DecorationImage(image: AssetImage("assets/icons/img.png"))),
+    // child: Image(
+    //   width: 25.w,
+    //   height: 25.h,
+    //   image: const AssetImage("assets/icons/edit_3.png"),
+    // ),
   );
 }
 
@@ -67,6 +67,7 @@ Widget buildListView(BuildContext context) {
                 child: Container(
                   margin: EdgeInsets.only(bottom: 15.h),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         child: Image.asset(

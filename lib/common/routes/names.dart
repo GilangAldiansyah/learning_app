@@ -6,4 +6,5 @@ class AppRoutes {
   static const HOME_PAGE = "/home_page";
   static const SETTINGS = "/settings";
   static const COURSE_DETAIL = "/course_detail";
+  static const COURSE_PAGE = "/course_page";
 }

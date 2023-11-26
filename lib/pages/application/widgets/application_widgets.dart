@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/pages/course/course_page.dart';
 import 'package:learning_app/pages/home/home_page.dart';
 import 'package:learning_app/pages/profile/profile.dart';
 
 Widget buildPage(int index) {
   List<Widget> _widget = [
     const HomePage(),
-    Center(child: Text("Course")),
+    const CoursePage(),
     // Center(child: Text("Course")),
     // Center(child: Text("Chat")),
     const ProfilePage(),

@@ -5,14 +5,14 @@ import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/common/widgets/base_text_widget.dart';
 import 'package:learning_app/pages/course/widgets/course_detail_widgets.dart';
 
-class CourseDetail extends StatefulWidget {
-  const CourseDetail({Key? key}) : super(key: key);
+class CoursePage extends StatefulWidget {
+  const CoursePage({Key? key}) : super(key: key);
 
   @override
-  State<CourseDetail> createState() => _CourseDetailState();
+  State<CoursePage> createState() => _CoursePageState();
 }
 
-class _CourseDetailState extends State<CourseDetail> {
+class _CoursePageState extends State<CoursePage> {
   late var id;
   @override
   // void initState(){
