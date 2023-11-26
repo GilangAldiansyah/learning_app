@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
-        builder: (context, hild) => MaterialApp(
+        builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               appBarTheme: const AppBarTheme(

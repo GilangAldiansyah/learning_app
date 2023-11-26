@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/common/widgets/base_text_widget.dart';
-import 'package:learning_app/pages/course/widgets/course_detail_widgets.dart';
+import 'package:learning_app/pages/course/widgets/course_page_widgets.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({Key? key}) : super(key: key);
@@ -21,6 +22,19 @@ class _CoursePageState extends State<CoursePage> {
   //   //   // print(data.values)
   //   }
   // }
+  final videoURL = "https://www.youtube.com/watch?v=8t_0Nfd_Ne4&t=417s";
+
+  late YoutubePlayerController _controller;
+
+  void initState() {
+    final videoID = YoutubePlayer.convertUrlToId(videoURL);
+
+    _controller = YoutubePlayerController(
+        initialVideoId: videoID!,
+        flags: const YoutubePlayerFlags(autoPlay: false));
+
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +50,11 @@ class _CoursePageState extends State<CoursePage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      thumbNail(),
+                      YoutubePlayer(
+                        controller: _controller,
+                        showVideoProgressIndicator: true,
+                      ),
+                      // thumbNail(),
                       SizedBox(
                         height: 15.h,
                       ),
@@ -49,7 +67,7 @@ class _CoursePageState extends State<CoursePage> {
                         height: 15.h,
                       ),
                       reusableText(
-                          "Laravel adalah framework permrograman mobile",
+                          "Laravel adalah framework permrograman mobile bos",
                           color: AppColors.primaryThreeElementText,
                           fontWeight: FontWeight.normal,
                           fontSize: 11.sp)
