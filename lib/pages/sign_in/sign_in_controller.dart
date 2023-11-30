@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:learning_app/common/apis/user_api.dart';
+import 'package:learning_app/common/entities/entities.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/flutter_toast.dart';
 import 'package:learning_app/global.dart';
@@ -42,11 +48,23 @@ class SignInController {
 
           var user = credential.user;
           if (user != null) {
+            String? displayName = user.displayName;
+            String? email = user.email;
+            String? id = user.uid;
+            String? photoUrl = user.photoURL;
+
+            print("my url is ${photoUrl}");
+
+            LoginRequestEntity loginRequestEntity = LoginRequestEntity();
+            loginRequestEntity.avatar = photoUrl;
+            loginRequestEntity.name = displayName;
+            loginRequestEntity.email = email;
+            loginRequestEntity.open_id = id;
+            // type 1 means email login
+            loginRequestEntity.type = 1;
+
             print("Berhasil Masuk");
-            Global.storageService
-                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "12345678");
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil("/application", (route) => false);
+            asyncPostAllData(loginRequestEntity);
           } else {
             // print("no user");
             toastInfo(msg: "Currently you are not a user of this app");
@@ -66,6 +84,33 @@ class SignInController {
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+    EasyLoading.show(
+      indicator: CircularProgressIndicator(),
+      maskType: EasyLoadingMaskType.clear,
+      dismissOnTap: true,
+    );
+
+    var result = await UserApi.login(params: loginRequestEntity);
+    if (result.code == 200) {
+      try {
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
+        EasyLoading.dismiss();
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/application", (route) => false);
+        print(result.data!.access_token!);
+      } catch (e) {
+        print('saving local storage error ${e.toString()}');
+      }
+    } else {
+      EasyLoading.dismiss();
+      toastInfo(msg: "unknown error");
     }
   }
 }

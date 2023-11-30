@@ -8,6 +8,7 @@ import 'package:learning_app/common/routes/names.dart';
 import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:learning_app/pages/home/bloc/home_page_states.dart';
+import 'package:learning_app/pages/home/home_controller.dart';
 import 'package:learning_app/pages/home/widgets/home_page_widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,11 +19,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late HomeController _homeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _homeController = HomeController(context: context);
+    _homeController.init();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return _homeController.userProfile!=null? Scaffold(
         backgroundColor: Colors.white,
-        appBar: buildAppbar(),
+        appBar: buildAppbar(_homeController.userProfile!.avatar.toString()),
         body: BlocBuilder<HomePageBlocs, HomePageStates>(
             builder: (context, state) {
           return Container(
@@ -35,7 +45,8 @@ class _HomePageState extends State<HomePage> {
                         color: AppColors.primaryThreeElementText, top: 20),
                   ),
                   SliverToBoxAdapter(
-                    child: homePageText("Gilang Aldiansyah", top: 5),
+                    child:
+                        homePageText(_homeController.userProfile!.name!, top: 5),
                   ),
                   SliverPadding(
                     padding: EdgeInsets.only(top: 20.h),
@@ -76,6 +87,6 @@ class _HomePageState extends State<HomePage> {
                   )
                 ]),
           );
-        }));
+        })) : Container();
   }
 }

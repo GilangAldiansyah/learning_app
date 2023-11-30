@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/colors.dart';
+import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/base_text_widget.dart';
 import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:learning_app/pages/home/bloc/home_page_event.dart';
 import 'package:learning_app/pages/home/bloc/home_page_states.dart';
 
-AppBar buildAppbar() {
+AppBar buildAppbar(String avatar) {
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
@@ -28,7 +29,8 @@ AppBar buildAppbar() {
                 height: 70.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("assets/icons/img.png"))),
+                        image: NetworkImage(
+                            "${AppConstants.SERVER_API_URL}$avatar"))),
               ),
             )
           ]),

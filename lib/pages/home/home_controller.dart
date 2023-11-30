@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/common/entities/entities.dart';
 import 'package:learning_app/global.dart';
+import 'package:flutter/cupertino.dart';
 
-// class HomeController {
-//   final BuildContext context;
-//   UserItem userProfile = Global.storageService.getUserProfile();
-//   HomeController({required this.context})
+class HomeController {
+  final BuildContext context;
+  HomeController({required this.context});
 
-//   Future<void> init() async{
-//     if(Global.storageService.getUserToken().isNotEmpty){
-   
-//     }
-//   }
-// }
+  UserItem? userProfile = Global.storageService.getUserProfile();
+
+  // Future<void> init() async{
+  //   if(Global.storageService.getUserToken().isNotEmpty){
+
+  //   }
+  // }
+
+  void init() {
+    print('...home controller init method');
+  }
+}
