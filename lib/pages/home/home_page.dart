@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return _homeController.userProfile != null
         ? Scaffold(
             backgroundColor: Colors.white,
-            appBar: buildAppbar(avatar),
+            appBar: buildAppbar(_homeController.userProfile!.avatar.toString()),
             drawer: SideMenu(),
             body: BlocBuilder<HomePageBlocs, HomePageStates>(
                 builder: (context, state) {
