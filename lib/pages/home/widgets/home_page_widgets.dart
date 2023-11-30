@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/common/entities/course.dart';
 import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/base_text_widget.dart';
@@ -207,19 +208,19 @@ Widget _reusableMenuText(String menuText,
   );
 }
 
-Widget courseGrid() {
+Widget courseGrid(CourseItem item) {
   return Container(
     padding: EdgeInsets.all(12.w),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.w),
-        image: const DecorationImage(
-            fit: BoxFit.fill, image: AssetImage("assets/icons/image(4).png"))),
+        image: DecorationImage(
+            fit: BoxFit.fill, image: NetworkImage(AppConstants.SERVER_UPLOADS+item.video!))),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Best course for flutter",
+          item.name?? "",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,
@@ -233,7 +234,7 @@ Widget courseGrid() {
           height: 5.h,
         ),
         Text(
-          "Done",
+          item.description?? "",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,

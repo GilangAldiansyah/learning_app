@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisSpacing: 15,
                               childAspectRatio: 1.6),
                       delegate: SliverChildBuilderDelegate(
-                        childCount: 2,
+                        childCount: state.courseItem.length,
                         (BuildContext context, int index) {
                           return GestureDetector(
                             onTap: () {
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                                 AppRoutes.COURSE_DETAIL,
                               );
                             },
-                            child: courseGrid(),
+                            child: courseGrid(state.courseItem[index]),
                           );
                         },
                       ),
