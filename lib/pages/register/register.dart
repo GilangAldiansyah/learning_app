@@ -33,8 +33,8 @@ class _RegisterState extends State<Register> {
                         height: 20.h,
                       ),
                       Center(
-                          child: reusableText(
-                              "Atau gunakan akun anda untuk mendaftar")),
+                        child: Image.asset("assets/icons/logo_aigy.png"),
+                      ),
                       Container(
                         margin: EdgeInsets.only(top: 60.h),
                         padding: EdgeInsets.only(left: 25.w, right: 25.w),
