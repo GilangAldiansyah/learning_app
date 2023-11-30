@@ -29,16 +29,25 @@ class _SignInState extends State<SignIn> {
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
-                      buildThirdPartyLogin(context),
+                      SizedBox(
+                        height: 70.h,
+                      ),
+
+                      // buildThirdPartyLogin(context),
                       Center(
-                          child: reusableText(
-                              "Atau gunakan akun anda untuk login")),
+                        child: Image.asset("assets/icons/logo_aigy.png"),
+                      ),
+
+                      // const Center(child: Text("Gunakan email yang valid")),
                       Container(
                         margin: EdgeInsets.only(top: 36.h),
                         padding: EdgeInsets.only(left: 25.w, right: 25.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
                             reusableText("Email"),
                             SizedBox(
                               height: 5.h,

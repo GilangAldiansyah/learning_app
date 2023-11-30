@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +7,7 @@ import 'package:learning_app/common/values/colors.dart';
 import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:learning_app/pages/home/bloc/home_page_states.dart';
 import 'package:learning_app/pages/home/widgets/home_page_widgets.dart';
+import 'package:learning_app/pages/side_menu/side_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: buildAppbar(),
+        drawer: SideMenu(),
         body: BlocBuilder<HomePageBlocs, HomePageStates>(
             builder: (context, state) {
           return Container(
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisSpacing: 15,
                               childAspectRatio: 1.6),
                       delegate: SliverChildBuilderDelegate(
-                        childCount: 2,
+                        childCount: 4,
                         (BuildContext context, int index) {
                           return GestureDetector(
                             onTap: () {

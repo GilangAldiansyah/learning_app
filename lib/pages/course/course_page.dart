@@ -15,6 +15,9 @@ class CoursePage extends StatefulWidget {
 
 class _CoursePageState extends State<CoursePage> {
   late var id;
+  late List<String> videoURLs;
+  late List<String> videoTitles;
+  late List<YoutubePlayerController> controllers;
   @override
   // void initState(){
   //   // super.initState(){
@@ -22,61 +25,78 @@ class _CoursePageState extends State<CoursePage> {
   //   //   // print(data.values)
   //   }
   // }
-  final videoURL = "https://www.youtube.com/watch?v=8t_0Nfd_Ne4&t=417s";
+  // final videoURL = "https://www.youtube.com/watch?v=8t_0Nfd_Ne4&t=417s";
 
   late YoutubePlayerController _controller;
 
   void initState() {
-    final videoID = YoutubePlayer.convertUrlToId(videoURL);
-
-    _controller = YoutubePlayerController(
-        initialVideoId: videoID!,
-        flags: const YoutubePlayerFlags(autoPlay: false));
-
     super.initState();
+    videoURLs = [
+      "https://www.youtube.com/watch?v=8t_0Nfd_Ne4&t=417s",
+      "https://www.youtube.com/watch?v=CzRQ9mnmh44&pp=ygUOZmx1dHRlciBjb3Vyc2U%3D",
+      "https://www.youtube.com/watch?v=CzRQ9mnmh44&pp=ygUOZmx1dHRlciBjb3Vyc2U%3D",
+      // Add more video URLs as needed
+    ];
+
+    videoTitles = [
+      "Belajar Flutter", // Replace with actual titles
+      "Belajar Pemrograman Web",
+      "Belajar Pemrograman Mobile",
+      // Add more titles corresponding to video URLs
+    ];
+
+    // final videoID = YoutubePlayer.convertUrlToId(videoURLs);
+
+    controllers = videoURLs.map((url) {
+      final videoID = YoutubePlayer.convertUrlToId(url);
+      return YoutubePlayerController(
+        initialVideoId: videoID!,
+        flags: const YoutubePlayerFlags(autoPlay: false),
+      );
+    }).toList();
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: buildAppBar(),
-          body: SingleChildScrollView(
-            child: Column(children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 25.w),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      YoutubePlayer(
-                        controller: _controller,
-                        showVideoProgressIndicator: true,
-                      ),
-                      // thumbNail(),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      menuView(),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      reusableText("Course Description"),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      reusableText(
-                          "Laravel adalah framework permrograman mobile bos",
-                          color: AppColors.primaryThreeElementText,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 11.sp)
-                    ]),
-              )
-            ]),
-          ),
+    return Scaffold(
+      appBar: buildAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: controllers.asMap().entries.map((entry) {
+            final index = entry.key;
+            final controller = entry.value;
+            final title = videoTitles[index];
+
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  YoutubePlayer(
+                    controller: controller,
+                    showVideoProgressIndicator: true,
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 }

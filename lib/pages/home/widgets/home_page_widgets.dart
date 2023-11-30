@@ -12,26 +12,18 @@ AppBar buildAppbar() {
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 15.w,
-              height: 12.h,
-              child: Image.asset("assets/icons/menu.png"),
-            ),
-            GestureDetector(
-              child: Container(
-                margin: EdgeInsets.only(top: 12.w),
-                width: 35.w,
-                height: 70.h,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/icons/img.png"))),
-              ),
-            )
-          ]),
+      child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        GestureDetector(
+          child: Container(
+            margin: EdgeInsets.only(top: 12.w),
+            width: 35.w,
+            height: 70.h,
+            decoration: BoxDecoration(
+                image:
+                    DecorationImage(image: AssetImage("assets/icons/img.png"))),
+          ),
+        )
+      ]),
     ),
   );
 }
@@ -123,8 +115,8 @@ Widget sliderView(BuildContext context, HomePageStates state) {
             context.read<HomePageBlocs>().add(HomePageDots(value));
           },
           children: [
-            _slidersContainer(path: "assets/icons/Art.png"),
-            _slidersContainer(path: "assets/icons/image(3).png"),
+            _slidersContainer(path: "assets/icons/aigy.png"),
+            _slidersContainer(path: "assets/icons/aigy_2.png"),
             _slidersContainer(path: "assets/icons/image(4).png")
           ],
         ),
@@ -146,7 +138,7 @@ Widget sliderView(BuildContext context, HomePageStates state) {
   );
 }
 
-Widget _slidersContainer({String path = "assets/icons/Art.png"}) {
+Widget _slidersContainer({String path = "assets/icons/aigy.png"}) {
   return Container(
     width: 325.w,
     height: 160.h,
@@ -167,24 +159,24 @@ Widget menuView() {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               reusableText("Select your course"),
-              GestureDetector(
-                child: reusableText("See all",
-                    color: AppColors.primaryThreeElementText, fontSize: 10),
-              ),
+              // GestureDetector(
+              //   child: reusableText("See all",
+              //       color: AppColors.primaryThreeElementText, fontSize: 10),
+              // ),
             ]),
       ),
-      Container(
-        margin: EdgeInsets.only(top: 20.w),
-        child: Row(children: [
-          _reusableMenuText("All"),
-          _reusableMenuText("Popular",
-              textColor: AppColors.primaryThreeElementText,
-              backgroundColor: Colors.white),
-          _reusableMenuText("Recent",
-              textColor: AppColors.primaryThreeElementText,
-              backgroundColor: Colors.white),
-        ]),
-      )
+      // Container(
+      //   margin: EdgeInsets.only(top: 20.w),
+      //   child: Row(children: [
+      //     // _reusableMenuText("All"),
+      //     // _reusableMenuText("Popular",
+      //     //     textColor: AppColors.primaryThreeElementText,
+      //     //     backgroundColor: Colors.white),
+      //     // _reusableMenuText("Recent",
+      //     //     textColor: AppColors.primaryThreeElementText,
+      //     //     backgroundColor: Colors.white),
+      //   ]),
+      // )
     ],
   );
 }
