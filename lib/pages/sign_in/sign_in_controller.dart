@@ -10,6 +10,7 @@ import 'package:learning_app/common/entities/entities.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/flutter_toast.dart';
 import 'package:learning_app/global.dart';
+import 'package:learning_app/pages/home/home_controller.dart';
 import 'package:learning_app/pages/sign_in/bloc/sign_in_blocs.dart';
 
 class SignInController {
@@ -65,6 +66,9 @@ class SignInController {
 
             print("Berhasil Masuk");
             asyncPostAllData(loginRequestEntity);
+            if (context.mounted) {
+              await HomeController(context: context).init();
+            }
           } else {
             // print("no user");
             toastInfo(msg: "Currently you are not a user of this app");
@@ -99,12 +103,14 @@ class SignInController {
       try {
         Global.storageService.setString(
             AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));
-            // token ini digunakan untuk authorization
+        // token ini digunakan untuk authorization
         Global.storageService.setString(
             AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
         EasyLoading.dismiss();
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil("/application", (route) => false);
+        if (context.mounted) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil("/application", (route) => false);
+        }
         print(result.data!.access_token!);
       } catch (e) {
         print('saving local storage error ${e.toString()}');

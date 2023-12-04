@@ -7,6 +7,8 @@ import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/application/bloc/app_blocs.dart';
 import 'package:learning_app/pages/application/bloc/app_events.dart';
+import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
+import 'package:learning_app/pages/home/bloc/home_page_event.dart';
 import 'package:learning_app/pages/profile/settings/bloc/setting_states.dart';
 import 'package:learning_app/pages/profile/settings/bloc/settings_blocs.dart';
 import 'package:learning_app/pages/profile/settings/widgets/settings_widgets.dart';
@@ -21,6 +23,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   void removeUserData() {
     context.read<AppBlocs>().add(const TriggerAppEvent(0));
+    context.read<HomePageBlocs>().add(const HomePageDots(0));
     Global.storageService.remove(AppConstants.STORAGE_USER_TOKEN_KEY);
     Global.storageService.remove(AppConstants.STORAGE_USER_PROFILE_KEY);
     Navigator.of(context)

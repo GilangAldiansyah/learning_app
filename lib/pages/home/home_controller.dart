@@ -8,10 +8,18 @@ import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:learning_app/pages/home/bloc/home_page_event.dart';
 
 class HomeController {
-  final BuildContext context;
-  HomeController({required this.context});
+  late BuildContext context;
+  UserItem get userProfile => Global.storageService.getUserProfile();
+  
+  static final HomeController _singleton = HomeController._external();
 
-  UserItem? userProfile = Global.storageService.getUserProfile();
+  HomeController._external();
+  
+  factory HomeController({required BuildContext context}){
+    _singleton.context = context;
+
+    return _singleton;
+  }
 
   // Future<void> init() async{
   //   if(Global.storageService.getUserToken().isNotEmpty){
@@ -21,12 +29,21 @@ class HomeController {
 
   Future<void> init() async {
     // print('...home controller init method');
-    var result = await CourseApi.courseList();
-    if (result.code == 200) {
-      context.read<HomePageBlocs>().add(HomePageCourseItem(result.data!));
-      // print(result.data![1].description);
+
+    // memastikan user terautentikasi/tidak dgn melakukan cek token
+    if (Global.storageService.getUserToken().isNotEmpty) {
+      var result = await CourseApi.courseList();
+      print('the result is ${(result.data![0].thumbnail!)}');
+      if (result.code == 200) {
+        if (context.mounted) {
+          context.read<HomePageBlocs>().add(HomePageCourseItem(result.data!));
+        }
+        // print(result.data![1].description);
+      } else {
+        // print(result.code);
+      }
     } else {
-      print(result.code);
+      print('user telah logout');
     }
   }
 }

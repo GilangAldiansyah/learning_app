@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learning_app/pages/course/bloc/course_detail_events.dart';
-import 'package:learning_app/pages/course/bloc/course_detail_states.dart';
+import 'package:learning_app/pages/course/course_detail/bloc/course_detail_events.dart';
+import 'package:learning_app/pages/course/course_detail/bloc/course_detail_states.dart';
 
 class CourseDetailBloc extends Bloc<CourseDetailEvents, CourseDetailStates> {
   CourseDetailBloc() : super(const CourseDetailStates()) {

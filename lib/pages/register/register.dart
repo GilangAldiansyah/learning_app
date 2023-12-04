@@ -29,12 +29,12 @@ class _RegisterState extends State<Register> {
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 20.h,
+                        SizedBox(
+                        height: 70.h,
                       ),
                       Center(
-                          child: reusableText(
-                              "Atau gunakan akun anda untuk mendaftar")),
+                        child: Image.asset("assets/icons/logo_aigy.png"),
+                      ),
                       Container(
                         margin: EdgeInsets.only(top: 60.h),
                         padding: EdgeInsets.only(left: 25.w, right: 25.w),

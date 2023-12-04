@@ -126,8 +126,8 @@ Widget sliderView(BuildContext context, HomePageStates state) {
             context.read<HomePageBlocs>().add(HomePageDots(value));
           },
           children: [
-            _slidersContainer(path: "assets/icons/Art.png"),
-            _slidersContainer(path: "assets/icons/image(3).png"),
+            _slidersContainer(path: "assets/icons/aigy.png"),
+            _slidersContainer(path: "assets/icons/aigy_2.png"),
             _slidersContainer(path: "assets/icons/image(4).png")
           ],
         ),
@@ -214,7 +214,7 @@ Widget courseGrid(CourseItem item) {
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.w),
         image: DecorationImage(
-            fit: BoxFit.fill, image: NetworkImage(AppConstants.SERVER_UPLOADS+item.video!))),
+            fit: BoxFit.fill, image: NetworkImage(AppConstants.SERVER_UPLOADS+item.thumbnail!))),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
