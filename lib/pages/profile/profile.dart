@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/pages/profile/widgets/profil_widgets.dart';
 
+class User {
+  final String name;
+  final String email;
+
+  User({required this.name, required this.email});
+}
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -11,6 +18,17 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  // late User user =
+  //     User(name: "Gilang Aldiansyah", email: "gilangazharaldi@gmail.com");
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch user information here (e.g., from authentication service or database)
+    // For example, you might use a provider or bloc to get the user data
+    // user = User(name: "Gilang Aldiansyah", email: "gilangazharaldi@gmail.com");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 20.h),
               profileIconAndEditButton(),
               SizedBox(
                 height: 30.h,

@@ -9,6 +9,7 @@ import 'package:learning_app/pages/home/bloc/home_page_blocs.dart';
 import 'package:learning_app/pages/home/bloc/home_page_states.dart';
 import 'package:learning_app/pages/home/home_controller.dart';
 import 'package:learning_app/pages/home/widgets/home_page_widgets.dart';
+import 'package:learning_app/pages/side_menu/side_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,10 +39,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
             backgroundColor: Colors.white,
-            appBar: buildAppbar(userProfile.avatar.toString()),
+            appBar: buildAppbar(userProfile!.avatar.toString()),
+            drawer: SideMenu(),
             body: BlocBuilder<HomePageBlocs, HomePageStates>(
                 builder: (context, state) {
-
               return Container(
                 margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
                 child: CustomScrollView(

@@ -20,6 +20,7 @@ class _CoursePageState extends State<CoursePage> {
   late List<YoutubePlayerController> controllers;
 
 
+  @override
   void initState() {
     super.initState();
     videoURLs = [
@@ -43,6 +44,7 @@ class _CoursePageState extends State<CoursePage> {
     }).toList();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),

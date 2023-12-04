@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
-                     SizedBox(
+                      SizedBox(
                         height: 70.h,
                       ),
                       Center(
@@ -41,6 +41,9 @@ class _SignInState extends State<SignIn> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
                             reusableText("Email"),
                             SizedBox(
                               height: 5.h,
@@ -64,7 +67,7 @@ class _SignInState extends State<SignIn> {
                           ],
                         ),
                       ),
-                      forgotPassword(),
+                      // forgotPassword(),
                       SizedBox(
                         height: 70.h,
                       ),
